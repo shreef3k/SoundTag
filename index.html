@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundTag</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212;
+            color: white;
+            font-size: 2rem;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="message">SoundTag by Shreef3k</div>
+    <audio id="bg-music" loop>
+        <source src="music.mp3" type="audio/mp3">
+        Browser not allowed
+    </audio>
+    <script>
+        document.addEventListener("click", () => {
+           
+            const audio = document.getElementById("bg-music");
+            audio.play().then(() => {
+                
+                document.getElementById("message").style.display = "none";
+            }).catch((error) => {
+               
+            });
+        }, { once: true });
+    </script>
+</body>
+</html>
+
