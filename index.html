@@ -15,27 +15,34 @@
             font-size: 2rem;
             font-family: Arial, sans-serif;
             text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        #message {
+            z-index: 10;
         }
     </style>
 </head>
 <body>
     <div id="message">SoundTag by Shreef3k</div>
-    <audio id="bg-music" loop>
+    <audio id="bg-music" loop autoplay>
         <source src="music.mp3" type="audio/mp3">
-        Browser not allowed
+        Ваш браузер не поддерживает аудио элемент.
     </audio>
     <script>
-        document.addEventListener("click", () => {
-           
+        document.addEventListener('DOMContentLoaded', function() {
             const audio = document.getElementById("bg-music");
-            audio.play().then(() => {
-                
-                document.getElementById("message").style.display = "none";
-            }).catch((error) => {
-               
-            });
-        }, { once: true });
+            
+            // Попытка автоматического воспроизведения
+            const playPromise = audio.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    // Если автоматическое воспроизведение запрещено, покажем сообщение
+                    console.log("Автовоспроизведение запрещено:", error);
+                });
+            }
+        });
     </script>
 </body>
 </html>
-
