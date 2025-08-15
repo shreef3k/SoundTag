@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoundTag</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212;
+            color: white;
+            font-size: 2rem;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="message">SoundTag by Shreef3k</div>
+    <audio id="bg-music" loop></audio> <!-- Убрал <source>, добавим его через JS -->
+    <script>
+        // Получаем последний сегмент URL
+        const lastSegment = window.location.pathname
+            .split('/')
+            .filter(segment => segment !== '')
+            .pop() || 'default'; // Если URL пустой, будет 'default.mp3'
+
+        // Создаем путь к аудиофайлу
+        const audioPath = `${lastSegment}.mp3`;
+
+        // Настраиваем аудиоэлемент
+        const audio = document.getElementById("bg-music");
+        const source = document.createElement("source");
+        source.src = audioPath;
+        source.type = "audio/mp3";
+        audio.appendChild(source);
+
+        // Воспроизводим при клике
+        document.addEventListener("click", () => {
+            audio.play()
+                .then(() => {
+                    document.getElementById("message").style.display = "none";
+                })
+                .catch(error => {
+                    console.error("Ошибка воспроизведения:", error);
+                    document.getElementById("message").textContent = "Ошибка загрузки аудио!";
+                });
+        }, { once: true });
+    </script>
+</body>
+</html>
