@@ -29,7 +29,7 @@
             .pop() || 'default'; // Если URL пустой, будет 'default.mp3'
 
         // Создаем путь к аудиофайлу
-        const audioPath = `${lastSegment}.mp3`;
+        const audioPath = `/loads/${lastSegment}.mp3`;
 
         // Настраиваем аудиоэлемент
         const audio = document.getElementById("bg-music");
